@@ -3,7 +3,7 @@
 
 This repo provides sources for videos aiming to illustrate the performance programming with Python by taking a problem of computing of the Fibonacci sequence for large numbers. 
 
-The repository contains two Python scrips
+The repository contains two Python scripts
 1. `fibonacci.py` - Variety of implementations to evaluate their performance efficiency
 2. `fib_visual.py` - Visual representation of the Fibonacci numbers as a spiral of growing squares
 
