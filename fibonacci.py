@@ -63,6 +63,19 @@ def fibonacci_numpy(n):
     return fib
 
 
+def fibonacci_yield(n):
+    """
+    Efficient implementation using `yield` sequencing
+
+    :param n: The order (index) of the Fibonacci number
+    :return: The sequence of `n` first Fibonacci numbers
+    """
+    a, b = 0, 1
+    for _ in range(n + 1):
+        yield a
+        a, b = b, a + b
+
+
 N = 35
 print("*** RECURSIVE IMPLEMENTATION  ***")
 print(f"N={N}")
@@ -88,6 +101,16 @@ print("*** IMPLEMENTATION WITH NUMPY ***")
 print(f"N={N}")
 t1 = time()
 seq = fibonacci_numpy(N)
+t2 = time()
+print(f"Elapsed time {t2 - t1:.3f} seconds")
+print("First 10 elements:", seq[:10])
+
+
+N = 300000
+print("*** IMPLEMENTATION WITH YIELD ***")
+print(f"N={N}")
+t1 = time()
+seq = list(fibonacci_yield(N))
 t2 = time()
 print(f"Elapsed time {t2 - t1:.3f} seconds")
 print("First 10 elements:", seq[:10])
