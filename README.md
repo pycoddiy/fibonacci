@@ -9,14 +9,14 @@ The repository contains two Python scripts
 
 ## Prerequisites
 
-Before running `fibonacci.py` please make sure your Python environment has `numpy`.
-
+Before running `fibonacci.py` please make sure your Python environment has `numpy`. 
 To install `numpy` in your current environment use the following command:
+
 `conda install numpy`
 
-Before running `fib_visual.py` please make sure your Python environment has `matplotlib`.
-
+Before running `fib_visual.py` please make sure your Python environment has `matplotlib`. 
 To install `matplotlib` in your current environment use the following command:
+
 `conda install matplotlib`
 
 **Todo**
