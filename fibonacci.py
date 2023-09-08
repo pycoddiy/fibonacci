@@ -10,6 +10,7 @@ This file illustrates performance aspects of implementing the Fibonacci sequence
 """
 
 from time import time
+import numpy as np
 
 
 def fibonacci_recursive(n):
@@ -19,11 +20,11 @@ def fibonacci_recursive(n):
     :param n: The order (index) of the Fibonacci number
     :return: The list of `n` first Fibonacci numbers
     """
-    def _fib(n):
-        if n in {0, 1}:
-            return n
+    def _fib(m):
+        if m in {0, 1}:
+            return m
         else:
-            return _fib(n - 1) + _fib(n - 2)
+            return _fib(m - 1) + _fib(m - 2)
 
     return [_fib(k) for k in range(n + 1)]
 
@@ -37,12 +38,29 @@ def fibonacci_caching(n):
     """
     cache = {0: 0, 1: 1}  # Initial cache for F(0) and F(1)
 
-    def _fib(n):
-        if n not in cache:
-            cache[n] = _fib(n - 1) + _fib(n - 2)
-        return cache[n]
+    def _fib(m):
+        if m not in cache:
+            cache[m] = _fib(m - 1) + _fib(m - 2)
+        return cache[m]
 
     return [_fib(k) for k in range(n + 1)]
+
+
+def fibonacci_numpy(n):
+    """
+    Efficient implementation using NumPy
+
+    :param n: The order (index) of the Fibonacci number
+    :return: The NumPy array of `n` first Fibonacci numbers
+    """
+    fib = np.empty(n + 1, dtype=float)
+    fib[0] = 0
+    fib[1] = 1
+
+    for k in range(2, n + 1):
+        fib[k] = fib[k - 1] + fib[k - 2]
+
+    return fib
 
 
 N = 35
@@ -60,6 +78,16 @@ print("*** IMPLEMENTATION WITH CACHING ***")
 print(f"N={N}")
 t1 = time()
 seq = fibonacci_caching(N)
+t2 = time()
+print(f"Elapsed time {t2 - t1:.3f} seconds")
+print("First 10 elements:", seq[:10])
+
+
+N = 1000
+print("*** IMPLEMENTATION WITH NUMPY ***")
+print(f"N={N}")
+t1 = time()
+seq = fibonacci_numpy(N)
 t2 = time()
 print(f"Elapsed time {t2 - t1:.3f} seconds")
 print("First 10 elements:", seq[:10])
